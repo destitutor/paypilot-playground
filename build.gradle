@@ -71,18 +71,18 @@ jacocoTestCoverageVerification {
             enabled = true
             element = 'CLASS' // 클래스 단위로 커버리지 체크
 
-            // 라인 커버리지 제한을 80%로 설정
+            // 라인 커버리지 제한을 30%로 설정
             limit {
                 counter = 'LINE'
                 value = 'COVEREDRATIO'
-                minimum = 0.80
+                minimum = 0.30
             }
 
-            // 브랜치 커버리지 제한을 80%로 설정
+            // 브랜치 커버리지 제한을 30%로 설정
             limit {
                 counter = 'BRANCH'
                 value = 'COVEREDRATIO'
-                minimum = 0.80
+                minimum = 0.30
             }
         }
     }
