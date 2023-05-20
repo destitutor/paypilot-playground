@@ -59,7 +59,7 @@ jacocoTestReport {
     // 어떤 보고서 파일들을 어디에 생성할지 설정함
     reports {
         html.enabled true
-        xml.enabled false
+        xml.enabled true
         csv.enabled false
         // 경로를 명시하지 않을 경우 기본 경로는 build/reports/jacoco/test에 만들어짐
     }
