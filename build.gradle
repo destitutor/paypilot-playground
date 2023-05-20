@@ -64,3 +64,26 @@ jacocoTestReport {
         // 경로를 명시하지 않을 경우 기본 경로는 build/reports/jacoco/test에 만들어짐
     }
 }
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = true
+            element = 'CLASS' // 클래스 단위로 커버리지 체크
+
+            // 라인 커버리지 제한을 80%로 설정
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.80
+            }
+
+            // 브랜치 커버리지 제한을 80%로 설정
+            limit {
+                counter = 'BRANCH'
+                value = 'COVEREDRATIO'
+                minimum = 0.80
+            }
+        }
+    }
+}
