@@ -4,19 +4,37 @@ on:
   pull_request:
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v3
+      
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradlew/caches
+            ~/.gradlew/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      
       - name: Set up JDK 1.17
         uses: actions/setup-java@v3
         with:
           distribution: 'corretto'
           java-version: '17'
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+  coverage:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
       - name: Run Coverage
         run: |
-          chmod +x gradlew
           ./gradlew jacocoTestReport jacocoTestCoverageVerification
 
       - name: Jacoco Coverage Report
