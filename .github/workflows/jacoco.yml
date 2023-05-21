@@ -4,7 +4,7 @@ on:
   pull_request:
 
 jobs:
-  setup:
+  coverage:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -29,10 +29,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-  coverage:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
       - name: Run Coverage
         run: |
           ./gradlew jacocoTestReport jacocoTestCoverageVerification
